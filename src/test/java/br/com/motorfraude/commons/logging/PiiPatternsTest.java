@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-/** T016 — mascaramento de CPF, e-mail, telefone e cartão, sem mascarar tokens e identificadores do projeto. */
 class PiiPatternsTest {
 
     @Test

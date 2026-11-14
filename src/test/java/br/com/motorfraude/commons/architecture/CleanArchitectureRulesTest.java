@@ -9,10 +9,6 @@ import com.tngtech.archunit.core.importer.ClassFileImporter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/**
- * T020 — as regras reutilizáveis aceitam código conforme e PEGAM violações plantadas. Sem este teste, uma regra com
- * defeito passaria em silêncio em todos os serviços.
- */
 class CleanArchitectureRulesTest {
 
     private static final String FIXTURES = "br.com.motorfraude.commons.architecture.fixtures";

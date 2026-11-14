@@ -8,7 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-/** T018 — header W3C Trace Context {@code traceparent}: versão-traceId-parentId-flags. */
 class TraceParentTest {
 
     private static final String VALID = "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01";
@@ -39,16 +38,16 @@ class TraceParentTest {
     @NullAndEmptySource
     @ValueSource(strings = {
         "lixo",
-        "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7",                  // sem flags
-        "00-4bf92f3577b34da6a3ce929d0e0e473-00f067aa0ba902b7-01",                // traceId curto
-        "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b-01",                // parentId curto
-        "00-4BF92F3577B34DA6A3CE929D0E0E4736-00f067aa0ba902b7-01",               // maiúsculas
-        "00-00000000000000000000000000000000-00f067aa0ba902b7-01",               // traceId zerado
-        "00-4bf92f3577b34da6a3ce929d0e0e4736-0000000000000000-01",               // parentId zerado
-        "ff-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01",               // versão proibida
-        "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01-extra",         // versão 00 não admite sufixo
-        "00-4bf92f3577b34da6a3ce929d0e0e47zz-00f067aa0ba902b7-01",               // não hexadecimal
-        " 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01"               // espaço no início
+        "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7",
+        "00-4bf92f3577b34da6a3ce929d0e0e473-00f067aa0ba902b7-01",
+        "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b-01",
+        "00-4BF92F3577B34DA6A3CE929D0E0E4736-00f067aa0ba902b7-01",
+        "00-00000000000000000000000000000000-00f067aa0ba902b7-01",
+        "00-4bf92f3577b34da6a3ce929d0e0e4736-0000000000000000-01",
+        "ff-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01",
+        "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01-extra",
+        "00-4bf92f3577b34da6a3ce929d0e0e47zz-00f067aa0ba902b7-01",
+        " 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01"
     })
     void rejeitaInvalidos(String value) {
         assertThat(TraceParent.parse(value)).isEmpty();

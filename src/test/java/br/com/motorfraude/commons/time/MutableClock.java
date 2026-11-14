@@ -6,10 +6,6 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 
-/**
- * Relógio controlado pelo teste, publicado no test-jar do commons: os testes dos serviços fazem o tempo andar com
- * {@link #advance(Duration)} em vez de dormir. Sempre UTC: {@link #withZone(ZoneId)} devolve o próprio relógio.
- */
 public final class MutableClock extends Clock {
 
     private volatile Instant now;

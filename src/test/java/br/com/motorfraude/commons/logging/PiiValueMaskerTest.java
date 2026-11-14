@@ -9,10 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
-/**
- * T016 — o mascaramento vale para TODO valor de texto do JSON de log (mensagem, argumentos, MDC, stack trace),
- * usando a configuração real {@code logback-base.xml}.
- */
 class PiiValueMaskerTest {
 
     private static final Logger log = LoggerFactory.getLogger(PiiValueMaskerTest.class);

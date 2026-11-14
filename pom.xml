@@ -33,7 +33,6 @@
             <artifactId>kafka-clients</artifactId>
         </dependency>
 
-        <!-- Testes -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -50,7 +49,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- App Spring Boot mínimo, só em teste, para o aceite da H3 (T020a). Spring nunca entra no escopo compile. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc</artifactId>
@@ -81,7 +79,6 @@
     <build>
         <plugins>
             <plugin>
-                <!-- test-jar: publica CleanArchitectureRules para os testes ArchUnit dos serviços (T020) -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <executions>
@@ -95,9 +92,6 @@
         </plugins>
     </build>
 
-    <!-- Artefatos compartilhados: GitHub Packages (repositórios privados). Leitura e escrita exigem um token
-         configurado no ~/.m2/settings.xml com o id github-motor-fraude (ver README). Sem registry, use ./mvnw install
-         nos repositórios motor-fraude-parent, contracts e platform-commons, nessa ordem. -->
     <repositories>
         <repository>
             <id>github-motor-fraude</id>

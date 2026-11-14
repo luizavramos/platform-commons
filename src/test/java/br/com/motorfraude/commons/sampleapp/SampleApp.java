@@ -6,10 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Serviço Spring mínimo, só para provar a H3: usa o {@code logback-base.xml} do commons (via logback-test.xml),
- * Actuator e Micrometer Tracing. Spring existe aqui apenas em escopo de teste.
- */
 @SpringBootApplication
 public class SampleApp {
 

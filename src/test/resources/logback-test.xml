@@ -1,5 +1,4 @@
 <configuration>
-    <!-- Os testes do commons usam a mesma configuração JSON mascarada que os serviços vão incluir -->
     <include resource="logback-base.xml"/>
     <root level="INFO">
         <appender-ref ref="JSON"/>

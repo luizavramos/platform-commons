@@ -7,7 +7,6 @@ import org.apache.kafka.common.header.internals.RecordHeaders;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** T018 — o {@code traceparent} atravessa o Kafka em header, nos dois sentidos. */
 class KafkaTracePropagationTest {
 
     private static final TraceParent TP =

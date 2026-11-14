@@ -8,7 +8,6 @@ import java.util.List;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
 
-/** Captura o que o appender JSON escreve no stdout e entrega cada linha já como JSON. */
 public final class LogCapture {
 
     private static final JsonMapper MAPPER = JsonMapper.builder().build();

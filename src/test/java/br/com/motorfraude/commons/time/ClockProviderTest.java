@@ -8,7 +8,6 @@ import java.time.ZoneOffset;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/** T019 — toda dependência de "agora" passa pela porta Clock (constituição VIII). */
 class ClockProviderTest {
 
     @Test

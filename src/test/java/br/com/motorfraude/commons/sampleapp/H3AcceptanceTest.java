@@ -13,12 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import tools.jackson.databind.JsonNode;
 
-/**
- * T020a — aceite da H3 (spec 000): um serviço Spring que usa o {@code logback-base.xml} do commons expõe
- * métricas, loga em JSON mascarado e carrega o traceId recebido em {@code traceparent}.
- *
- * <p>O app de exemplo existe só em src/test; o commons em si não depende de Spring.
- */
 @SpringBootTest(
         classes = SampleApp.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,

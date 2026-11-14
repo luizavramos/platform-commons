@@ -17,29 +17,8 @@ import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 
-/**
- * Regras ArchUnit da Clean Architecture (constituição I e VIII), reutilizadas por todos os serviços via test-jar
- * de {@code platform-commons}.
- *
- * <p>Uso no teste de cada serviço (o serviço declara também {@code archunit-junit5} em escopo de teste, porque
- * test-jar não traz dependências transitivas):
- *
- * <pre>{@code
- * @Test
- * void arquitetura() {
- *     var classes = new ClassFileImporter()
- *             .withImportOption(new ImportOption.DoNotIncludeTests())
- *             .importPackages("br.com.motorfraude.receiver");
- *     CleanArchitectureRules.assertAll(classes, "br.com.motorfraude.receiver");
- * }
- * }</pre>
- *
- * <p>Camadas, de dentro para fora: {@code domain} → {@code application} → {@code adapters} → {@code infrastructure}.
- * O código só depende de camadas mais internas.
- */
 public final class CleanArchitectureRules {
 
-    /** Frameworks e bibliotecas que não podem aparecer em {@code domain} nem em {@code application}. */
     public static final List<String> FORBIDDEN_IN_INNER_LAYERS = List.of(
             "org.springframework..",
             "org.apache.kafka..",
@@ -61,7 +40,6 @@ public final class CleanArchitectureRules {
 
     private CleanArchitectureRules() {}
 
-    /** domain ← application ← adapters ← infrastructure: ninguém depende de uma camada mais externa. */
     public static ArchRule layersRespectDependencyRule(String basePackage) {
         return layeredArchitecture()
                 .consideringOnlyDependenciesInLayers()
@@ -77,7 +55,6 @@ public final class CleanArchitectureRules {
                 .because("a regra de dependência da Clean Architecture: só se depende de camadas mais internas");
     }
 
-    /** {@code domain} e {@code application} não importam Spring, Kafka, JDBC, Redis nem Jackson. */
     public static ArchRule innerLayersAreFrameworkFree(String basePackage) {
         return noClasses()
                 .that()
@@ -88,10 +65,6 @@ public final class CleanArchitectureRules {
                 .because("domínio e casos de uso não conhecem frameworks nem infraestrutura");
     }
 
-    /**
-     * Nenhuma chamada direta a "agora" fora da infraestrutura: o tempo entra por {@link Clock} injetado (porta). O
-     * relógio de produção nasce na infraestrutura, via {@code ClockProvider.system()}.
-     */
     public static ArchRule noDirectClockAccess(String basePackage) {
         ArchCondition<JavaClass> condition = callMethod(Instant.class, "now");
         for (Class<?> type : List.of(LocalDateTime.class, LocalDate.class, LocalTime.class, ZonedDateTime.class, OffsetDateTime.class)) {
@@ -116,10 +89,6 @@ public final class CleanArchitectureRules {
                 noDirectClockAccess(basePackage));
     }
 
-    /**
-     * Aplica todas as regras. Falha se nenhuma classe foi importada: pacote errado passaria em todas as regras sem
-     * ter analisado nada.
-     */
     public static void assertAll(JavaClasses classes, String basePackage) {
         if (classes.isEmpty()) {
             throw new AssertionError("Nenhuma classe encontrada em '" + basePackage + "': o pacote base está certo?");

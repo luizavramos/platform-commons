@@ -7,11 +7,6 @@ import com.tngtech.archunit.core.importer.ImportOption;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-/**
- * T020 — o recorte do plano 000 §6: {@code platform-commons} não depende de Spring nem de Kafka Streams. Assim o
- * receiver não herda Kafka Streams e o motor não herda Spring. (O app Spring do aceite da H3 vive em src/test e é
- * ignorado aqui.)
- */
 class CommonsBoundaryTest {
 
     @Test
