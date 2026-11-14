@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Fragmento de configuração Logback reutilizável por todos os serviços (constituição VI e VII):
+  logs em JSON, uma linha por evento, com todo valor de texto mascarado (CPF, e-mail, telefone, cartão).
+  O MDC inteiro vai para o JSON, então traceId, transactionId e alertId aparecem quando existirem.
+
+  Uso, no logback.xml (ou logback-spring.xml) do serviço:
+
+    <configuration>
+      <include resource="logback-base.xml"/>
+      <root level="INFO"><appender-ref ref="JSON"/></root>
+    </configuration>
+-->
+<included>
+    <appender name="JSON" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <!-- logstash-logback-encoder 9.x: o elemento chama-se "decorator" (antes: jsonGeneratorDecorator); com o nome antigo o Logback só avisa e IGNORA o mascaramento -->
+            <decorator class="net.logstash.logback.mask.MaskingJsonGeneratorDecorator">
+                <valueMasker class="br.com.motorfraude.commons.logging.PiiValueMasker"/>
+            </decorator>
+        </encoder>
+    </appender>
+</included>
